@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBER TAHAMID HOSSAIN</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+html,body{width:100%;overflow-x:hidden}
+body{background:#000;color:#fff;min-height:100vh}
+.glass{position:relative;background:linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.08) 28%, rgba(255,255,255,.03) 55%, rgba(255,255,255,.14) 100%);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,.35);border-radius:30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.75), inset 0 -1px 0 rgba(255,255,255,.12), 0 18px 40px rgba(0,0,0,.55);overflow:hidden}
+.glass::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.08) 22%, transparent 40%, transparent 72%, rgba(255,255,255,.22) 100%);pointer-events:none;z-index:0}
+.glass::after{content:"";position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);pointer-events:none;z-index:1}
+.top{max-width:1080px;margin:auto;padding:16px;display:flex;justify-content:flex-end;position:relative;z-index:2}
+.adminBtn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.adminBtn svg{width:24px;height:24px;fill:currentColor;position:relative;z-index:2}
+.wrap{max-width:1080px;margin:auto;padding:0 16px 40px;width:100%;position:relative;z-index:1}
+h1{font-family:'Space Grotesk';font-size:clamp(30px,5vw,54px);text-align:center;line-height:1.05;word-break:break-word}
+.hero{padding:36px 24px;text-align:center;margin-top:8px}
+.hero img{width:112px;height:112px;border-radius:50%;border:2px solid rgba(255,255,255,.9);object-fit:cover;background:#333;position:relative;z-index:2}
+.hero h2{font-family:'Space Grotesk';font-size:22px;margin-top:14px;position:relative;z-index:2}
+.hero p{font-size:14px;line-height:1.7;opacity:.92;max-width:640px;margin:12px auto;word-break:break-word;position:relative;z-index:2}
+.sec{padding:26px;margin-top:18px;width:100%}
+.sec h3{font-family:'Space Grotesk';font-size:19px;margin-bottom:6px;position:relative;z-index:2}
+.sec .secBio{font-size:13px;opacity:.75;margin-bottom:16px;position:relative;z-index:2;line-height:1.6}
+.linkList{display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
+.linkItem{padding:16px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);display:block;text-decoration:none;color:inherit}
+.linkItem b{font-size:14px;display:block;margin-bottom:4px;word-break:break-word}
+.link-url{font-size:13px;opacity:.7;word-break:break-all}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.hero{padding:26px 16px}.sec{padding:20px 16px}}
+.card{padding:22px}
+.card h3,.card p{position:relative;z-index:2}
+.card p{font-size:13px;opacity:.82;line-height:1.6;margin-top:6px}
+#adminPanel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:999;place-items:center;padding:16px;overflow:auto}
+#adminPanel.open{display:grid}
+.panel{width:100%;max-width:520px;padding:28px 24px;background:linear-gradient(135deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.12) 30%, rgba(255,255,255,.06) 60%, rgba(255,255,255,.22) 100%);backdrop-filter:blur(30px) saturate(200%);-webkit-backdrop-filter:blur(30px) saturate(200%);border:1px solid rgba(255,255,255,.5);border-radius:34px;box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 30px 60px rgba(0,0,0,.6);color:#fff;max-height:92vh;overflow:auto;position:relative}
+.panel::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.08) 25%, transparent 45%, transparent 70%, rgba(255,255,255,.25) 100%);pointer-events:none;border-radius:34px;z-index:0}
+.panel::after{content:"";position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent);pointer-events:none;z-index:1}
+.panel h3{font-family:'Space Grotesk';font-size:24px;position:relative;z-index:2}
+.panel input,.panel textarea,.panel select{width:100%;padding:13px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.45);color:#fff;margin:6px 0;outline:none;font-size:14px;position:relative;z-index:2}
+.panel input::placeholder,.panel textarea::placeholder{color:rgba(255,255,255,.55)}
+.panel button{width:100%;padding:13px;border-radius:14px;border:0;background:#fff;color:#000;font-weight:800;cursor:pointer;margin-top:8px;position:relative;z-index:2}
+.panel label{font-size:12px;opacity:.85;display:block;margin-top:12px;position:relative;z-index:2}
+.divider{height:1px;background:rgba(255,255,255,.25);margin:18px 0;position:relative;z-index:2}
+#loginMsg{font-size:14px;font-weight:700;margin-top:10px;min-height:20px;position:relative;z-index:2}
+/* ADMIN TABS */
+.tabs{display:flex;gap:8px;margin:16px 0;position:relative;z-index:2}
+.tabs button{flex:1;padding:11px 6px;font-size:12px;border-radius:12px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);font-weight:700;cursor:pointer}
+.tabs button.active{background:#fff;color:#000}
+.tabBox{display:none;position:relative;z-index:2}
+.tabBox.show{display:block}
+.editRow{position:relative;z-index:2;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px;margin:8px 0}
+.editRow b{font-size:13px;display:block;word-break:break-all}
+.editRow span{font-size:12px;opacity:.7;word-break:break-all}
+.editRow .rowBtns{display:flex;gap:8px;margin-top:8px}
+.editRow .rowBtns button{padding:8px;font-size:12px;margin:0}
+</style>
+</head>
+<body>
+<div class="top"><div class="adminBtn glass" onclick="openAdmin()"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg></div></div>
+
+<div class="wrap">
+  <h1 id="mainName">CYBER TAHAMID<br>HOSSAIN</h1>
+  <div class="hero glass">
+    <img id="profilePic" src="https://github.com/TahamidOfficial.png" onerror="this.src='https://ui-avatars.com/api/?name=CYBER+TAHAMID&background=000&color=fff&size=200'">
+    <h2 id="profileName">CYBER TAHAMID HOSSAIN</h2>
+    <p id="bioText">I am Cyber Tahamid Hossain. I will be a successful man. I love Cyber Security, Web Development and New Technology.</p>
+  </div>
+  <div id="allSections">
+    <div class="sec glass" data-section="My Websites"><h3>My Websites</h3><p class="secBio"></p><div class="linkList">
+      <a class="linkItem" href="https://github.com/TahamidOfficial" target="_blank"><b>My Portfolio</b><span class="link-url">https://github.com/TahamidOfficial</span></a>
+    </div></div>
+    <div class="sec glass" data-section="My Social Media"><h3>My Social Media</h3><p class="secBio"></p><div class="linkList">
+      <a class="linkItem" href="https://github.com/TahamidOfficial" target="_blank"><b>GitHub Account</b><span class="link-url">https://github.com/TahamidOfficial</span></a>
+      <a class="linkItem" href="mailto:tahamidbusiness1m@gmail.com"><b>Business Email</b><span class="link-url">tahamidbusiness1m@gmail.com</span></a>
+    </div></div>
+  </div>
+  <div class="grid">
+    <div class="card glass"><h3>Cyber Security</h3><p>Ethical Hacking and Security Research.</p></div>
+    <div class="card glass"><h3>Web Developer</h3><p>Modern Liquid Glass Websites and Portfolio.</p></div>
+    <div class="card glass"><h3>My Goal</h3><p>To become a successful Cyber Expert from Bangladesh.</p></div>
+  </div>
+  <p style="text-align:center;font-size:12px;opacity:.5;margin-top:20px">© CYBER TAHAMID HOSSAIN. All Rights Reserved.</p>
+</div>
+
+<div id="adminPanel"><div class="panel">
+  <h3>Admin Panel</h3>
+  <div id="loginBox">
+    <label>Enter Admin PIN</label>
+    <input type="password" id="pinInput" placeholder="Enter PIN" inputmode="numeric" autocomplete="off">
+    <button type="button" id="loginBtn" onclick="checkPIN()">Login</button>
+    <p id="loginMsg"></p>
+  </div>
+
+  <div id="adminForm" style="display:none">
+    <!-- 3 OPTION MENU -->
+    <div class="tabs">
+      <button type="button" id="tabBtn1" class="active" onclick="showTab('profile')">1. Profile</button>
+      <button type="button" id="tabBtn2" onclick="showTab('links')">2. Edit Link</button>
+      <button type="button" id="tabBtn3" onclick="showTab('add')">3. Add Option</button>
+    </div>
+
+    <!-- OPTION 1 -->
+    <div id="tab-profile" class="tabBox show">
+      <label>Name Change</label><input id="editName" placeholder="Enter New Name">
+      <label>Bio Change</label><textarea id="editBio" placeholder="Enter New Bio"></textarea>
+      <label>Photo Change (Photo URL)</label><input id="editPic" placeholder="Enter Photo URL">
+      <button type="button" onclick="saveProfile()">Save Profile</button>
+      <div class="divider"></div>
+      <label>Change Admin PIN</label><input id="newPIN" placeholder="Enter New PIN" type="password">
+      <button type="button" onclick="changePIN()" style="background:#ffcc00">Change PIN</button>
+    </div>
+
+    <!-- OPTION 2 -->
+    <div id="tab-links" class="tabBox">
+      <label>Select Option</label><select id="existingSection" onchange="renderEditLinks()"></select>
+      <div id="editList"></div>
+      <div class="divider"></div>
+      <label>Add Link To This Option</label>
+      <input id="existLinkTitle" placeholder="Link Title"><input id="existLinkUrl" placeholder="https://...">
+      <button type="button" onclick="addToExisting()" style="background:#00d4ff">Add Link</button>
+    </div>
+
+    <!-- OPTION 3 -->
+    <div id="tab-add" class="tabBox">
+      <label>Select Option / Create New</label><select id="addSelect" onchange="onAddSelect()"><option value="__new">+ Create New Option</option></select>
+      <label>Option Name</label><input id="newSectionName" placeholder="Example: My Tools">
+      <label>Option Bio / Description</label><textarea id="newSectionBio" placeholder="Example: My best tools list..."></textarea>
+      <label>First Link Title (Optional)</label><input id="newLinkTitle" placeholder="Example: My Facebook">
+      <label>First Link URL (Optional)</label><input id="newLinkUrl" placeholder="https://...">
+      <button type="button" onclick="addNewOption()" style="background:#00d4ff">Save Option</button>
+      <p style="font-size:12px;opacity:.7;margin-top:8px;position:relative;z-index:2">নতুন Option বানাতে চাইলে Name + Bio দিয়ে Save চাপো। পুরানো Option এডিট করতে চাইলে উপরে Select থেকে Option বেছে নাও।</p>
+    </div>
+
+    <button type="button" onclick="logoutAdmin()" style="background:rgba(255,255,255,.2);color:#fff;margin-top:16px">Logout</button>
+  </div>
+  <button type="button" onclick="closeAdmin()" style="background:rgba(255,255,255,.2);color:#fff">Close</button>
+</div></div>
+
+<script>
+var _mem={};
+function sGet(k){ try{return localStorage.getItem(k);}catch(e){return _mem[k]||null;} }
+function sSet(k,v){ try{localStorage.setItem(k,v);}catch(e){_mem[k]=v;} }
+function sRemove(k){ try{localStorage.removeItem(k);}catch(e){delete _mem[k];} }
+var isAdmin=false;
+var DEFAULT_PIN='019752';
+if(sGet('cth_pin')==='1234'){sRemove('cth_pin');}
+function getPIN(){var s=sGet('cth_pin'); if(!s){return DEFAULT_PIN;} return s;}
+function openAdmin(){document.getElementById('adminPanel').classList.add('open'); refreshSectionList(); document.getElementById('loginMsg').innerText='';}
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
+function checkPIN(){var input=document.getElementById('pinInput'); var v=input.value.trim(); var msg=document.getElementById('loginMsg'); if(v===getPIN()||v===DEFAULT_PIN){isAdmin=true; msg.style.color='#4ade80'; msg.innerText='Login Successful'; document.getElementById('loginBox').style.display='none'; document.getElementById('adminForm').style.display='block'; showTab('profile');} else {msg.style.color='#ff6b6b'; msg.innerText='Incorrect PIN. Try Again.'; input.value=''; input.focus();}}
+try{document.getElementById('pinInput').addEventListener('keydown',function(e){if(e.key==='Enter'){checkPIN();}});}catch(e){}
+function logoutAdmin(){isAdmin=false;document.getElementById('adminForm').style.display='none';document.getElementById('loginBox').style.display='block';document.getElementById('pinInput').value='';document.getElementById('loginMsg').innerText='';}
+function changePIN(){var n=document.getElementById('newPIN').value.trim(); if(!n){return;} sSet('cth_pin',n); alert('PIN Changed');}
+function showTab(name){
+  var tabs=['profile','links','add'];
+  for(var i=0;i<tabs.length;i++){document.getElementById('tab-'+tabs[i]).classList.remove('show'); document.getElementById('tabBtn'+(i+1)).classList.remove('active');}
+  document.getElementById('tab-'+name).classList.add('show');
+  if(name==='profile'){document.getElementById('tabBtn1').classList.add('active');}
+  if(name==='links'){document.getElementById('tabBtn2').classList.add('active'); renderEditLinks();}
+  if(name==='add'){document.getElementById('tabBtn3').classList.add('active'); refreshAddSelect();}
+}
+function getSectionByName(name){var all=document.querySelectorAll('#allSections .sec'); for(var i=0;i<all.length;i++){if(all[i].getAttribute('data-section')===name){return all[i];}} return null;}
+function refreshSectionList(){var sel=document.getElementById('existingSection'); if(!sel){return;} sel.innerHTML=''; var list=document.querySelectorAll('#allSections .sec'); for(var i=0;i<list.length;i++){var o=document.createElement('option'); o.value=list[i].getAttribute('data-section'); o.textContent=list[i].getAttribute('data-section'); sel.appendChild(o);} renderEditLinks(); refreshAddSelect();}
+function refreshAddSelect(){var sel=document.getElementById('addSelect'); if(!sel){return;} var cur=sel.value; sel.innerHTML='<option value="__new">+ Create New Option</option>'; var list=document.querySelectorAll('#allSections .sec'); for(var i=0;i<list.length;i++){var o=document.createElement('option'); o.value=list[i].getAttribute('data-section'); o.textContent='Edit: '+list[i].getAttribute('data-section'); sel.appendChild(o);} if(cur){sel.value=cur;}}
+function onAddSelect(){var v=document.getElementById('addSelect').value; if(v==='__new'){document.getElementById('newSectionName').value=''; document.getElementById('newSectionBio').value='';} else {var sec=getSectionByName(v); if(sec){document.getElementById('newSectionName').value=v; var bioEl=sec.querySelector('.secBio'); document.getElementById('newSectionBio').value=bioEl?bioEl.innerText:'';}}}
+function createLinkEl(t,u){var a=document.createElement('a'); a.className='linkItem'; a.href=u; a.target='_blank'; var b=document.createElement('b'); b.innerText=t; var s=document.createElement('span'); s.className='link-url'; s.innerText=u; a.appendChild(b); a.appendChild(s); return a;}
+function renderEditLinks(){
+  var sel=document.getElementById('existingSection'); if(!sel||!sel.value){return;}
+  var sec=getSectionByName(sel.value); var box=document.getElementById('editList'); box.innerHTML='';
+  if(!sec){return;}
+  var links=sec.querySelectorAll('.linkItem');
+  if(links.length===0){box.innerHTML='<p style="font-size:12px;opacity:.7;margin-top:8px">এই Option এ এখনো কোনো Link নাই। নিচে Add Link দিয়ে Add করো।</p>'; return;}
+  for(var i=0;i<links.length;i++){
+    (function(idx, el){
+      var title=el.querySelector('b')?el.querySelector('b').innerText:''; var url=el.querySelector('.link-url')?el.querySelector('.link-url').innerText:el.getAttribute('href');
+      var div=document.createElement('div'); div.className='editRow';
+      var b=document.createElement('b'); b.innerText=title; var sp=document.createElement('span'); sp.innerText=url;
+      var btns=document.createElement('div'); btns.className='rowBtns';
+      var e=document.createElement('button'); e.type='button'; e.innerText='Edit'; e.style.background='#fff'; e.onclick=function(){var nt=prompt('Edit Link Title', title); if(nt===null){return;} var nu=prompt('Edit Link URL', url); if(nu===null){return;} el.querySelector('b').innerText=nt; el.querySelector('.link-url').innerText=nu; el.href=nu; saveSections(); renderEditLinks();};
+      var d=document.createElement('button'); d.type='button'; d.innerText='Delete'; d.style.background='#ff4444'; d.style.color='#fff'; d.onclick=function(){if(confirm('Delete this link?')){el.remove(); saveSections(); renderEditLinks();}};
+      btns.appendChild(e); btns.appendChild(d); div.appendChild(b); div.appendChild(sp); div.appendChild(btns); box.appendChild(div);
+    })(i, links[i]);
+  }
+}
+function addToExisting(){if(!isAdmin){return;} var secName=document.getElementById('existingSection').value; var title=document.getElementById('existLinkTitle').value.trim(); var url=document.getElementById('existLinkUrl').value.trim(); if(!title||!url){return;} var el=getSectionByName(secName); if(el){el.querySelector('.linkList').appendChild(createLinkEl(title,url)); saveSections(); renderEditLinks();} document.getElementById('existLinkTitle').value=''; document.getElementById('existLinkUrl').value='';}
+function addNewOption(){
+  if(!isAdmin){return;}
+  var mode=document.getElementById('addSelect').value;
+  var sec=document.getElementById('newSectionName').value.trim();
+  var bio=document.getElementById('newSectionBio').value.trim();
+  var title=document.getElementById('newLinkTitle').value.trim();
+  var url=document.getElementById('newLinkUrl').value.trim();
+  if(!sec){alert('Enter Option Name'); return;}
+  var ex=getSectionByName(sec);
+  if(ex){
+    var bioEl=ex.querySelector('.secBio'); if(bioEl){bioEl.innerText=bio;}
+    if(title&&url){ex.querySelector('.linkList').appendChild(createLinkEl(title,url));}
+    alert('Option Updated');
+  } else {
+    var d=document.createElement('div'); d.className='sec glass'; d.setAttribute('data-section',sec);
+    var h=document.createElement('h3'); h.innerText=sec; var p=document.createElement('p'); p.className='secBio'; p.innerText=bio; var l=document.createElement('div'); l.className='linkList';
+    if(title&&url){l.appendChild(createLinkEl(title,url));}
+    d.appendChild(h); d.appendChild(p); d.appendChild(l); document.getElementById('allSections').appendChild(d);
+    alert('New Option Created');
+  }
+  document.getElementById('newSectionName').value=''; document.getElementById('newSectionBio').value=''; document.getElementById('newLinkTitle').value=''; document.getElementById('newLinkUrl').value='';
+  saveSections(); refreshSectionList(); showTab('links');
+}
+function saveProfile(){if(!isAdmin){return;} var n=document.getElementById('editName').value.trim(); var b=document.getElementById('editBio').value.trim(); var p=document.getElementById('editPic').value.trim(); if(n){document.getElementById('profileName').innerText=n; document.getElementById('mainName').innerText=n; sSet('cth_name',n);} if(b){document.getElementById('bioText').innerText=b; sSet('cth_bio',b);} if(p){document.getElementById('profilePic').src=p; sSet('cth_pic',p);} saveSections(); alert('Profile Saved'); closeAdmin();}
+function saveSections(){sSet('cth_sections', document.getElementById('allSections').innerHTML);}
+try{
+  var sn=sGet('cth_name'); if(sn){document.getElementById('profileName').innerText=sn; document.getElementById('mainName').innerText=sn;}
+  var sb=sGet('cth_bio'); if(sb){document.getElementById('bioText').innerText=sb;}
+  var sp=sGet('cth_pic'); if(sp){document.getElementById('profilePic').src=sp;}
+  var ss=sGet('cth_sections'); if(ss){document.getElementById('allSections').innerHTML=ss;}
+}catch(e){}
+</script>
+</body>
+</html>
